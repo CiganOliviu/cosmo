@@ -1,6 +1,6 @@
 import Foundation
 
-class cosmo {
+class cosmoIO {
 
     func readFileName () -> String {
 
@@ -41,7 +41,7 @@ class cosmo {
 
 }
 
-let cosmoObjectRefference = cosmo()
+let cosmoObjectRefference = cosmoIO()
 let data = cosmoObjectRefference.readDataFromFile(cosmoObjectRefference.readFileName())
 cosmoObjectRefference.putsInFile("D:\\code\\workSpace\\cosmo\\ouputDataStream.dataFlux", message: data)
 
