@@ -44,5 +44,3 @@ class cosmoIO {
 let cosmoObjectRefference = cosmoIO()
 let data = cosmoObjectRefference.readDataFromFile(cosmoObjectRefference.readFileName())
 cosmoObjectRefference.putsInFile("D:\\code\\workSpace\\cosmo\\ouputDataStream.dataFlux", message: data)
-
-// D:\code\workSpace\cosmo\DataStream.dataFlux
