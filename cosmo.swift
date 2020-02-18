@@ -10,7 +10,7 @@ class cosmoIO {
 
     }
 
-    func readDataFromFile (_ path: String) -> String {
+    func readDataFromFile (path: String) -> String {
         
         var data = ""
 
@@ -25,7 +25,7 @@ class cosmoIO {
         return data; 
     }
 
-    func putsInFile (_ filename: String, message: String) -> Void {
+    func putsInFile (filename: String, message: String) -> Void {
 
         do {
             try message.write(toFile: filename, atomically: false, encoding: String.Encoding.utf8)
@@ -38,9 +38,63 @@ class cosmoIO {
 
         }
     }
-
 }
 
-let cosmoObjectRefference = cosmoIO()
-let data = cosmoObjectRefference.readDataFromFile(cosmoObjectRefference.readFileName())
-cosmoObjectRefference.putsInFile("D:\\code\\workSpace\\cosmo\\ouputDataStream.dataFlux", message: data)
+class cosmoCriptoProcessor {
+
+    func processCriptography (key: String) -> Array<Character> {
+
+        var lettersForCripto = [Character]()
+
+        for letter in key {
+            lettersForCripto.append(letter);
+        }
+
+        return lettersForCripto
+    }
+
+    func convertListToDictionary (lettersList: Array<Character>) -> Dictionary<Character, Int> {
+
+        var lettersDictionaryRefference = Dictionary<Character, Int>() 
+        var iterator = 0
+
+        for letter in lettersList {
+            lettersDictionaryRefference[letter] = iterator;
+            iterator += 1;
+        }
+
+        return lettersDictionaryRefference
+    }
+
+    func processCriptoMessage (dictionaryLetters: Dictionary<Character, Int>, message: String) -> String {
+
+        var crypto_msg = ""
+
+        for (key_letter, number) in dictionaryLetters {
+
+            for letter in message {
+                if letter == key_letter {
+                    crypto_msg += String(number)
+                }
+            }
+            crypto_msg += String(key_letter)
+        }
+        return crypto_msg
+    }
+}
+
+let cosmoIOObjectRefference = cosmoIO()
+let cosmoCriptoProcessorRefference = cosmoCriptoProcessor()
+
+var list = [Character]()
+var listDict = Dictionary<Character, Int>()
+let key = "this is a key test"
+var msg = String()
+
+let data = cosmoIOObjectRefference.readDataFromFile(path: cosmoIOObjectRefference.readFileName())
+
+list = cosmoCriptoProcessorRefference.processCriptography(key: key)
+listDict = cosmoCriptoProcessorRefference.convertListToDictionary(lettersList: list)
+msg = cosmoCriptoProcessorRefference.processCriptoMessage(dictionaryLetters: listDict, message: data)
+
+cosmoIOObjectRefference.putsInFile(filename: "..\\ouputDataStream.dataFlux", message: msg)
