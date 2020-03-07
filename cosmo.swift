@@ -1,5 +1,11 @@
 import Foundation
 
+class setup {
+
+    public let KEY = "abcdefghi";
+    public let WORKFLOW_PATH = "D:\\code\\workSpace\\cosmo\\IOData\\" 
+}
+
 class cosmoIO {
 
     func readFileName () -> String {
@@ -85,16 +91,16 @@ class cosmoCriptoProcessor {
 
 let cosmoIOObjectRefference = cosmoIO()
 let cosmoCriptoProcessorRefference = cosmoCriptoProcessor()
+let systemSetup = setup()
 
 var list = [Character]()
 var listDict = Dictionary<Character, Int>()
-let key = "this is a key test"
 var msg = String()
 
-let data = cosmoIOObjectRefference.readDataFromFile(path: cosmoIOObjectRefference.readFileName())
+let data = cosmoIOObjectRefference.readDataFromFile(path: systemSetup.WORKFLOW_PATH + cosmoIOObjectRefference.readFileName())
 
-list = cosmoCriptoProcessorRefference.processCriptography(key: key)
+list = cosmoCriptoProcessorRefference.processCriptography(key: systemSetup.KEY)
 listDict = cosmoCriptoProcessorRefference.convertListToDictionary(lettersList: list)
 msg = cosmoCriptoProcessorRefference.processCriptoMessage(dictionaryLetters: listDict, message: data)
 
-cosmoIOObjectRefference.putsInFile(filename: "..\\ouputDataStream.dataFlux", message: msg)
+cosmoIOObjectRefference.putsInFile(filename: systemSetup.WORKFLOW_PATH + "ouputDataStream.dataFlux", message: msg)
