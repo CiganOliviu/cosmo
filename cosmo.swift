@@ -27,7 +27,7 @@ import Foundation
 class setup {
 
     public let KEY = "abcdefghi";
-    public let WORKFLOW_PATH = "D:\\code\\workSpace\\cosmo\\IOData\\"
+    public let WORKFLOW_PATH = ""
 }
 
 class cosmoIO {
